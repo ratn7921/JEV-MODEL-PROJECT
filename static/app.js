@@ -369,6 +369,45 @@ document.addEventListener("DOMContentLoaded", () => {
     settingsModal.classList.add("hidden");
   });
 
+  // Preview Modal Handlers
+  const openPreviewBtn = document.getElementById("openPreviewBtn");
+  const closePreviewBtn = document.getElementById("closePreviewBtn");
+  const previewModal = document.getElementById("previewModal");
+
+  if (openPreviewBtn && previewModal) {
+    openPreviewBtn.addEventListener("click", () => {
+      previewModal.classList.remove("hidden");
+    });
+
+    if (closePreviewBtn) {
+      closePreviewBtn.addEventListener("click", () => {
+        previewModal.classList.add("hidden");
+      });
+    }
+
+    const previewBackdrop = previewModal.querySelector(".modal-backdrop");
+    if (previewBackdrop) {
+      previewBackdrop.addEventListener("click", () => {
+        previewModal.classList.add("hidden");
+      });
+    }
+
+    // Tabs inside preview modal
+    const previewTabs = previewModal.querySelectorAll(".preview-tab");
+    previewTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const targetId = tab.dataset.tab;
+        previewTabs.forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+
+        const panels = previewModal.querySelectorAll(".preview-panel");
+        panels.forEach((p) => p.classList.remove("active"));
+        const targetPanel = document.getElementById(targetId);
+        if (targetPanel) targetPanel.classList.add("active");
+      });
+    });
+  }
+
   // Bootstrapping
   initSettings();
   checkServerStatus();

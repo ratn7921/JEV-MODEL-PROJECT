@@ -28,6 +28,20 @@ def load_presets():
 def index():
     return send_from_directory(app.static_folder, "index.html")
 
+@app.route("/paper")
+def get_paper():
+    """Serves the Jev research paper PDF."""
+    paper_path = os.path.join(os.path.dirname(__file__), "jev model PAPER.pdf")
+    if os.path.exists(paper_path):
+        return send_from_directory(os.path.dirname(__file__), "jev model PAPER.pdf", mimetype="application/pdf")
+    return jsonify({"error": "Paper PDF not found."}), 404
+
+@app.route("/assets/<path:filename>")
+def get_asset(filename):
+    """Serves assets like previews and screenshots."""
+    assets_dir = os.path.join(os.path.dirname(__file__), "assets")
+    return send_from_directory(assets_dir, filename)
+
 @app.route("/<path:path>")
 def static_proxy(path):
     return send_from_directory(app.static_folder, path)
