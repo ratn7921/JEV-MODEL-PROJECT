@@ -1,0 +1,110 @@
+[
+  {
+    "id": "network_incident",
+    "title": "IT Incident Triage: Database Outage",
+    "description": "Diagnosing a high-latency connection and sudden failover alert in EU-West cloud cluster.",
+    "context": "At 03:14 UTC, alert monitor reported API latency spiking from 45ms to 9800ms. PostgreSQL replica db-eu-2 reported replication lag exceeding 120 seconds. Primary db-eu-1 is responding to ICMP ping, but port 5432 is refusing connection pool handshakes due to max_connections exhaustion caused by an unindexed query storm from worker-node-04.",
+    "question": "What is the primary root cause and recommended immediate action to recover the database service?",
+    "candidate_answers": [
+      {
+        "id": "A",
+        "text": "Terminate runaway queries on worker-node-04 and temporarily throttle connection pool size while creating missing index."
+      },
+      {
+        "id": "B",
+        "text": "Reboot the physical primary server host and re-route all writes to replica db-eu-2 immediately."
+      },
+      {
+        "id": "C",
+        "text": "Increase max_connections parameter to 50,000 and restart PostgreSQL service."
+      },
+      {
+        "id": "D",
+        "text": "Deploy a new VPC peering gateway and renew SSL certificates for EU-West."
+      }
+    ],
+    "expected_choice": "A",
+    "verification_question": "Does the selected action remediate connection starvation without causing split-brain replication data loss?"
+  },
+  {
+    "id": "customer_support",
+    "title": "Customer Support: Billing & Subscription Tier",
+    "description": "Deciding on tier upgrade dispute and prorated refund routing.",
+    "context": "Customer enterprise account #4829 upgraded from Pro ($49/mo) to Enterprise Annual ($4,800/yr) 3 days ago. Their accounting department mistakenly executed a duplicate wire payment, and user permissions for SAML SSO are currently pending admin approval. Customer is asking for immediate reversal of the duplicate wire and provisioning confirmation for SSO.",
+    "question": "How should the customer support team handle this ticket?",
+    "candidate_answers": [
+      {
+        "id": "A",
+        "text": "Route duplicate wire to Finance/Billing Operations for wire refund authorization while notifying Tier 2 Identity Support to accelerate SSO verification."
+      },
+      {
+        "id": "B",
+        "text": "Downgrade the account back to Pro tier and instruct customer to open a dispute with their bank."
+      },
+      {
+        "id": "C",
+        "text": "Apply the duplicate wire as account credits for the next 10 years without refunding."
+      },
+      {
+        "id": "D",
+        "text": "Close the ticket as resolved because subscription changes take 30 days to process."
+      }
+    ],
+    "expected_choice": "A",
+    "verification_question": "Is this action compliant with billing dispute handling policies?"
+  },
+  {
+    "id": "science_physics",
+    "title": "Physics & Engineering: Thermodynamics",
+    "description": "Thermodynamics problem on Carnot engine maximum theoretical efficiency.",
+    "context": "An experimental thermal power plant operates using a heat reservoir at 800 Kelvin and discharges waste heat into a coolant reservoir at 400 Kelvin. The engineering team claims the current turbine prototype produces 320 kW of work from an input thermal energy of 500 kW.",
+    "question": "According to the Second Law of Thermodynamics (Carnot limit), is this claimed efficiency achievable?",
+    "candidate_answers": [
+      {
+        "id": "A",
+        "text": "No, because the Carnot limit is 50% (1 - 400/800 = 0.50), while the claimed prototype achieves 64% (320/500 = 0.64), violating thermodynamic limits."
+      },
+      {
+        "id": "B",
+        "text": "Yes, because thermal cycle efficiency is always greater than 70% at temperatures exceeding 750 Kelvin."
+      },
+      {
+        "id": "C",
+        "text": "Yes, provided the working fluid undergoes isobaric expansion rather than adiabatic expansion."
+      },
+      {
+        "id": "D",
+        "text": "Insufficient data because enthalpy values for the specific coolant refrigerant were not provided."
+      }
+    ],
+    "expected_choice": "A",
+    "verification_question": "Is the violation of the Carnot efficiency limit scientifically verified?"
+  },
+  {
+    "id": "medical_triage",
+    "title": "Medical Triage Assessment",
+    "description": "Evaluating urgent clinical presentation and determining priority acuity.",
+    "context": "Patient is a 58-year-old male presenting with acute substernal chest pressure radiating to the left jaw and diaphoresis that started 40 minutes ago while at rest. Vitals: BP 168/98 mmHg, HR 102 bpm, SpO2 96% on room air. History of hypertension and smoking.",
+    "question": "What is the recommended immediate clinical triage pathway?",
+    "candidate_answers": [
+      {
+        "id": "A",
+        "text": "Immediate Emergency Department Level 1 triage, stat 12-lead ECG within 10 minutes, continuous cardiac monitoring, aspirin, and activate STEMI protocol if indicated."
+      },
+      {
+        "id": "B",
+        "text": "Schedule an outpatient treadmill stress test for next week and prescribe antacids for gastroesophageal reflux."
+      },
+      {
+        "id": "C",
+        "text": "Administer intramuscular antibiotics and discharge patient with oral hydration guidelines."
+      },
+      {
+        "id": "D",
+        "text": "Recommend deep breathing exercises and follow up with primary care physician in 30 days."
+      }
+    ],
+    "expected_choice": "A",
+    "verification_question": "Does this adhere to standard acute coronary syndrome emergency guidelines?"
+  }
+]
